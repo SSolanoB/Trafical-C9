@@ -1,1 +1,9 @@
 @import "bulma";
+
+.notification > button.delete {
+  border: none;
+}
+
+.is-hidden {
+  display: none;
+}

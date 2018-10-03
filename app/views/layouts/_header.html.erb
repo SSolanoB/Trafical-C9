@@ -3,23 +3,18 @@
     <a class="navbar-item">
       <img src="<%= asset_path('TRAFICAL.png') %>" width="112" height="28">
     </a>
-
-    <a role="button" class="navbar-burger burger" aria-label="menu" aria-expanded="false" data-target="navbarBasicExample">
-      <span aria-hidden="true"></span>
-      <span aria-hidden="true"></span>
-      <span aria-hidden="true"></span>
-    </a>
   </div>
 
-  <div id="navbarBasicExample" class="navbar-menu">
+  <div class="navbar-menu">
     <div class="navbar-start">
-      <a class="navbar-item">
-        Home
+      <a>
+        <%= link_to "Home", root_path, class: "navbar-item"  %>
       </a>
-
-      <a class="navbar-item">
-        Documentation
-      </a>
+      <% if user_signed_in? %>
+        <a>
+          <%= link_to "Register calories", '#', class: "navbar-item"  %>
+        </a>
+      <% end %>
 
       <div class="navbar-item has-dropdown is-hoverable">
         <a class="navbar-link">
@@ -27,18 +22,11 @@
         </a>
 
         <div class="navbar-dropdown">
-          <a class="navbar-item">
-            About
+          <a>
+            <%= link_to "About", about_path, class: "navbar-item"  %>
           </a>
-          <a class="navbar-item">
-            Jobs
-          </a>
-          <a class="navbar-item">
-            Contact
-          </a>
-          <hr class="navbar-divider">
-          <a class="navbar-item">
-            Report an issue
+          <a>
+            <%= link_to "Contact", contact_path, class: "navbar-item"  %>
           </a>
         </div>
       </div>
@@ -47,12 +35,24 @@
     <div class="navbar-end">
       <div class="navbar-item">
         <div class="buttons">
-          <a class="button is-primary">
-            <strong>Sign up</strong>
+          <% if user_signed_in? %>
+          <a>
+            <%= link_to "Track my progress", '#', class: "button is-light"  %>
           </a>
-          <a class="button is-light">
-            Log in
+          <a>
+            <%= link_to "Edit profile", edit_user_registration_path, class: "button is-light"  %>
           </a>
+          <a>
+            <%= link_to raw("<strong>Logout</strong>"), destroy_user_session_path, method: :delete, class: "button is-light"  %>
+          </a>
+          <% else %>
+          <a>
+            <%= link_to raw("<strong>Sign up</strong>"), new_user_registration_path, class: "button is-primary"  %>
+          </a>
+          <a>
+            <%= link_to "Login", new_user_session_path, class: "button is-light"  %>
+          </a>
+          <% end %>
         </div>
       </div>
     </div>
