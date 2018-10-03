@@ -9,7 +9,15 @@
   <body>
     <%= render 'layouts/header' %>
     <% flash.each do |message_type, message| %>
-      <%= content_tag(:div, message, class: "message is-#{message_type}") %>
+      <div class="columns">
+        <div class="column is-one-quarter">
+<!--           <div  id="error_explanation" class="notification is-#{message_type}"> -->
+          <div  id="error_explanation" class="notification is-<%= message_type = ('danger' if message_type == 'alert') || "message_type" %>">
+            <button class="delete" aria-label="delete"></button>
+            <%= content_tag(:p, message) %>
+          </div>
+        </div>
+      </div>
     <% end %>
     <%= yield %>
     <%= render 'layouts/footer' %>
