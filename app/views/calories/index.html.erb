@@ -1,5 +1,8 @@
 <% provide(:title, 'All calories') %>
+<% provide(:date, Time.now.to_s(:long)) %>
 <h1>All calories</h1>
+
+<%= yield(:date) %>
 
 <ol class="calories">
   <%= render @calories %>

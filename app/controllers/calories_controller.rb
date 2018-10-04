@@ -5,12 +5,42 @@ class CaloriesController < ApplicationController
     @calories = current_user.calories.page(params[:page]).per(30)
   end
 
-  def show
-    @calorie = Calorie.find(params[:id])
-  end
-
   def new
     @calorie = current_user.calories.build if user_signed_in?
+  end
+
+  def edit
+    @calorie = current_user.calories.find(params[:id])
+  end
+
+  def create
+    @calorie = current_user.calories.build(calorie_params)
+    if @calorie.save
+      flash[:success] = "Register created successfully!"
+      redirect_to calories_path
+    else
+      render 'new'
+    end
+  end
+
+  def update
+    @calorie = current_user.calories.find(params[:id])
+    if @calorie.update_attributes(calorie_params)
+      flash[:success] = "Register updated correctly!"
+      redirect_to @calorie
+    else
+      render 'edit'
+    end
+  end
+
+  def show
+    @calorie = current_user.calories.find(params[:id])
+  end
+
+  def destroy
+    @calorie.destroy
+    flash[:success] = "Register deleted"
+    redirect_to request.referrer || calories_path
   end
 
   private
