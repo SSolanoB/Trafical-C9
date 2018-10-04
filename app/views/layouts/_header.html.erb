@@ -12,7 +12,10 @@
       </a>
       <% if user_signed_in? %>
         <a>
-          <%= link_to "Register calories", '#', class: "navbar-item"  %>
+          <%= link_to "Register calories", new_calorie_path, class: "navbar-item"  %>
+        </a>
+        <a>
+          <%= link_to "Registers", calories_path, class: "navbar-item"  %>
         </a>
       <% end %>
 

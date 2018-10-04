@@ -1,0 +1,35 @@
+<%= form_for @calorie do |f| %>
+  <%#= render 'shared/error_messages', object: @user %>
+
+  <div class="field">
+    <%= f.label :number, 'Number of calories', class: 'label' %>
+    <div class="control">
+      <%= f.number_field :number, class: 'input', placeholder: 'Add a number of calories' %>
+    </div>
+  </div>
+
+  <div class="field">
+    <%= f.label :type_gained, 'Type of calories', class: 'label' %>
+    <div class="control">
+      <div class="select">
+        <%= f.select :type_gained, [['Gained', true], ['Burned', false]], class: 'select' %>
+      </div>
+    </div>
+  </div>
+  
+  <div class="field">
+    <%= f.label :activity, class: 'label' %>
+    <div class="control">
+      <%= f.text_field :activity, class: 'textarea', placeholder: 'Which activity did you realize?' %>
+    </div>
+  </div>
+
+  <div class="field">
+    <%= f.label :date, class: 'label' %>
+    <div class="control">
+      <%= f.datetime_field :date %>
+    </div>
+  </div>
+
+  <%= f.submit yield(:button_text), class: "button is-link" %>
+<% end %>

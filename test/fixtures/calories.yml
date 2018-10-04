@@ -1,0 +1,15 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  user: one
+  number: 1
+  type_gained: false
+  activity: MyText
+  date: 2018-10-03 16:28:38
+
+two:
+  user: two
+  number: 1
+  type_gained: false
+  activity: MyText
+  date: 2018-10-03 16:28:38

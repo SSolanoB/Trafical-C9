@@ -10,7 +10,19 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2018_10_02_222132) do
+ActiveRecord::Schema.define(version: 2018_10_04_025128) do
+
+  create_table "calories", force: :cascade do |t|
+    t.integer "user_id"
+    t.float "number"
+    t.boolean "type_gained"
+    t.text "activity"
+    t.datetime "date"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["user_id", "date"], name: "index_calories_on_user_id_and_date"
+    t.index ["user_id"], name: "index_calories_on_user_id"
+  end
 
   create_table "users", force: :cascade do |t|
     t.string "email", default: "", null: false
