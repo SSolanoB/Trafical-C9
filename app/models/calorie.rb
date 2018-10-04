@@ -7,8 +7,8 @@ class Calorie < ApplicationRecord
   validates :date, presence: true
   validates :activity, presence: true
   validates :activity, length: { maximum: 140 }
-  validate :date_cannot_be_earlier_than_twenty_four_hours
-  validate :date_cannot_be_latter_than_twelve_hours
+  #validate :date_cannot_be_earlier_than_twenty_four_hours
+  #validate :date_cannot_be_latter_than_twelve_hours
 
   private
 
