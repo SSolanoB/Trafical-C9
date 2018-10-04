@@ -14,6 +14,8 @@
 //= require rails-ujs
 //= require activestorage
 //= require turbolinks
+//= require raphael
+//= require morris
 //= require_tree .
 
 $(document).on('click', '.notification > button.delete', function() {
