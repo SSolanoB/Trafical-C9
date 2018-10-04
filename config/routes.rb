@@ -6,5 +6,7 @@ Rails.application.routes.draw do
   get '/about', to: 'static_pages#about'
   get '/contact', to: 'static_pages#contact'
   resources :calories
+  devise_scope :user do
   get 'users/sign_out', to: 'users/sessions#destroy'
+  end
 end
