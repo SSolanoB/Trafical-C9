@@ -1,5 +1,5 @@
 class Calorie < ApplicationRecord
-  belongs_to :user
+  belongs_to :user, touch: true
   default_scope -> { order(date: :desc) }
   validates :user_id, presence: true
   validates :number, presence: true

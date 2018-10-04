@@ -19,11 +19,11 @@ User.create!(email: "example@railstutorial.org",
 end
 
 users = User.order(:created_at).take(6)
-50.times do
+120.times do
   activity = Faker::Lorem.sentence(5)
   type_gained = Faker::Boolean.boolean
   number = Faker::Number.normal(2, 0.8)
-  date = Faker::Time.between(30.days.ago, Date.today, :all)
+  date = Faker::Time.between(120.days.ago, Date.today, :all)
   users.each { |user| user.calories.create!(activity: activity,
                                             type_gained: type_gained,
                                             number: number,
