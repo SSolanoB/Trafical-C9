@@ -15,8 +15,7 @@ class Calorie < ApplicationRecord
     #calories = calories.group("date(calories.date)")
     calories = calories.group("calories.date")
     calories = calories.select("calories.date, count(calories.date) as total_date, sum(calories.number) as total_calories")
-    #calories.group_by { |o| o.date.to_date }
-    calories.group_by { |o| o.date }
+    calories.group_by { |o| o.date.to_date }
   end
 
   private
