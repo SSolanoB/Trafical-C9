@@ -2,6 +2,8 @@
 <% provide(:date, Time.now.to_s(:long)) %>
 <h1>All calories</h1>
 
+<%= content_tag :div, "", id: "calories_chart", data: {calories: calories_chart_data} %>
+
 <%= yield(:date) %>
 
 <ol class="calories">

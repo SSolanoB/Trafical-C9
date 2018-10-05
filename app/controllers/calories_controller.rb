@@ -43,6 +43,9 @@ class CaloriesController < ApplicationController
     redirect_to request.referrer || calories_path
   end
 
+  def track
+  end
+
   private
 
     def calorie_params
