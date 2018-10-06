@@ -1,14 +1,13 @@
-<li id="calorie-<%= calorie.id %>">
-  <span class="activity"><%= calorie.activity %></span>
-  <span class="type"><%= calorie.type_gained ? "Gained" : "Burned" %></span>
-  <span class="date">
+<tr id="calorie-<%= calorie.id %>">
+  <td class="activity"><%= calorie.activity %></td>
+  <td class="type"><%= calorie.type_gained ? "Gained" : "Burned" %></td>
+  <td class="date">
     Posted <%= time_ago_in_words(calorie.date) %> ago.
-  </span>
-  <span class="edit"><%= link_to "edit", edit_calorie_path(calorie.id) %></span>
-  <span class="activity">
+  </td>
+  <td class="edit"><%= link_to "edit", edit_calorie_path(calorie.id) %>
     <% if current_user == calorie.user %>
      | <%= link_to "delete", calorie, method: :delete, data: { confirm: "You sure?" } %>
     <% end %>
-  | <span class="user"><%= link_to "show", calorie %></span>
-  </span>
-</li>
+  | <%= link_to "show", calorie %>
+  </td>
+</tr>

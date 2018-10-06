@@ -1,2 +1,28 @@
-<%= render @calorie %>
-
+<section class="hero">
+  <div class="hero-body">
+    <div class="container">
+      <h1 class="title">
+        <%= "Register of" %>
+      </h1>
+      <h2 class="subtitle">
+        <%= "#{current_user.email}" %>
+      </h2>
+      <h3>
+        <%= yield(:date) %>
+      </h3>
+      <table class="table is-striped">
+        <thead>
+          <tr>
+            <th>Activity</th>
+            <th>Type of calorie</th>
+            <th>Time</th>
+            <th>Actions</th>
+          </tr>
+        </thead>
+        <tbody class="calories">
+          <%= render @calorie %>
+        </tbody>
+      </table>
+    </div>
+  </div>
+</section>

@@ -1,21 +1,22 @@
 class Calorie < ApplicationRecord
   belongs_to :user, touch: true
-  #default_scope -> { order(date: :desc) }
+  default_scope -> { order(date: :desc) }
   validates :user_id, presence: true
   validates :number, presence: true
   validates :type_gained, inclusion: { in: [true, false] }
   validates :date, presence: true
   validates :activity, presence: true
   validates :activity, length: { maximum: 140 }
-  #validate :date_cannot_be_earlier_than_twenty_four_hours
-  #validate :date_cannot_be_latter_than_twelve_hours
+  validate :date_cannot_be_earlier_than_twenty_four_hours, on: :create
+  validate :date_cannot_be_latter_than_twelve_hours
   after_create :log_count
   after_destroy :log_minus_count
 
 
   def self.number_grouped_by_day(start)
     calories = where(date: start.beginning_of_day..Time.zone.now)
-    calories = calories.select("date(calories.date) as cal_date, sum(calories.number) as total_calories").group("cal_date")
+    #calories = calories.select("date(calories.date) as cal_date, sum(calories.number) as total_calories").group("cal_date")
+    calories = calories.all.except(:order).select("date(calories.date) as cal_date, sum(calories.number) as total_calories").group("cal_date")
     calories.group_by { |o| o.cal_date.to_date }
   end
 

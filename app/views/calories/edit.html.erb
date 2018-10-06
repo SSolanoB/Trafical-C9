@@ -1,4 +1,23 @@
 <% provide(:title, 'Update register') %>
 <% provide(:button_text, 'Update register') %>
-<h1>Add a new register of calories</h1>
-<%= render 'form' %>
+
+<section class="hero">
+  <div class="hero-body">
+    <div class="container">
+      <h1 class="title">
+        <%= "Edit this register of calories" %>
+      </h1>
+      <h2 class="subtitle">
+        <%= "#{current_user.email}" %>
+      </h2>
+      <h3>
+        <%= yield(:date) %>
+      </h3>
+      <div class="columns">
+        <div class="column is-two-fifths">
+          <%= render 'form' %>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>

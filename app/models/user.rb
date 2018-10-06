@@ -6,7 +6,6 @@ class User < ApplicationRecord
   devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :validatable
 
-  # Returns the hash digest of the given string.
   def User.digest(string)
     cost = ActiveModel::SecurePassword.min_cost ? BCrypt::Engine::MIN_COST :
                                                   BCrypt::Engine.cost
@@ -18,8 +17,9 @@ class User < ApplicationRecord
   end
 
   def create_track_digest
-    self.track_token = User.new_token
-    update_attribute(:track_digest, User.digest(track_token))
+    #self.track_token = User.new_token
+    #update_attribute(:track_digest, User.digest(track_token))
+    update_attribute(:track_digest, User.new_token)
   end
 
   def send_track_user_email(email)

@@ -1,13 +1,42 @@
 <% provide(:title, 'All calories') %>
 <% provide(:date, Time.now.to_s(:long)) %>
-<h1>All calories</h1>
 
-<%= content_tag :div, "", id: "calories_chart", data: {calories: calories_chart_data} %>
+<section class="hero">
+  <div class="hero-body">
+    <div class="container">
+      <h1 class="title">
+        <%= "All registers of" %>
+      </h1>
+      <h2 class="subtitle">
+        <%= "#{current_user.email}" %>
+      </h2>
+      <h3>
+        <%= yield(:date) %></br>
+      </h3>
+      <table class="table is-striped">
+        <thead>
+          <tr>
+            <th>Activity</th>
+            <th>Type of calorie</th>
+            <th>Time</th>
+            <th>Actions</th>
+          </tr>
+        </thead>
+        <tfoot>
+          <tr>
+            <th>Activity</th>
+            <th>Type of calorie</th>
+            <th>Time</th>
+            <th>Actions</th>
+          </tr>
+        </tfoot>
+        <tbody class="calories">
+          <%= render @calories %>
+        </tbody>
+        <%= paginate @calories %>
+        <%= page_entries_info @calories %>
+      </table>
+    </div>
+  </div>
+</section>
 
-<%= yield(:date) %>
-
-<ol class="calories">
-  <%= render @calories %>
-</ol>
-<%= paginate @calories %>
-<%= page_entries_info @calories %>

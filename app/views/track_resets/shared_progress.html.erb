@@ -1,0 +1,15 @@
+<section class="hero">
+  <div class="hero-body">
+    <div class="container">
+      <h1 class="title">
+        This is the progress of <%= @user.email %>
+      </h1>
+      <div class="columns">
+        <div class="column is-four-fifths">
+          <%= content_tag :div, "", id: "calories_chart", data: {calories: calories_chart_progress_data(@user)} %>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
