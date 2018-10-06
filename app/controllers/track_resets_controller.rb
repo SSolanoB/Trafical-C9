@@ -7,7 +7,8 @@ class TrackResetsController < ApplicationController
       if @user.track_digest.nil?
         @user.create_track_digest
       end
-      @user.send_track_user_email(email: params[:track_reset][:email])
+      #@user.send_track_user_email(email: params[:track_reset][:email])
+      TrackMailer.track_progress(@user, params[:track_reset][:email]).deliver_now
       flash[:info] = "Email sent with your progress"
       redirect_to root_url
     else
