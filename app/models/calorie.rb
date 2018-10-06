@@ -7,18 +7,16 @@ class Calorie < ApplicationRecord
   validates :date, presence: true
   validates :activity, presence: true
   validates :activity, length: { maximum: 140 }
-  validate :date_cannot_be_earlier_than_twenty_four_hours
-  validate :date_cannot_be_latter_than_twelve_hours
+  #validate :date_cannot_be_earlier_than_twenty_four_hours
+  #validate :date_cannot_be_latter_than_twelve_hours
   after_create :log_count
   after_destroy :log_minus_count
 
 
   def self.number_grouped_by_day(start)
     calories = where(date: start.beginning_of_day..Time.zone.now)
-    calories = calories.group("date(calories.date)")
-    #calories = calories.group("calories.date")
-    calories = calories.select("calories.date, count(calories.date) as total_date, sum(calories.number) as total_calories")
-    calories.group_by { |o| o.date.to_date }
+    calories = calories.select("date(calories.date) as cal_date, sum(calories.number) as total_calories").group("cal_date")
+    calories.group_by { |o| o.cal_date.to_date }
   end
 
   private
