@@ -40,7 +40,7 @@
         <div class="buttons">
           <% if user_signed_in? %>
           <a>
-            <%= link_to "Track my progress", '#', class: "button is-light"  %>
+            <%= link_to "Track my progress", track_path, class: "button is-light"  %>
           </a>
           <a>
             <%= link_to "Edit profile", edit_user_registration_path, class: "button is-light"  %>

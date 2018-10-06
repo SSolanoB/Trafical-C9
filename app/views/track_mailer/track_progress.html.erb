@@ -1,0 +1,7 @@
+<h1>Progress tracking</h1>
+
+<p>To check my progress click the link below:</p>
+
+<%= link_to "My progress", edit_track_reset_url(token: @user.track_token, email: @user.email) %>
+
+<p>This link will expire in two hours.</p>

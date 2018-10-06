@@ -1,6 +1,6 @@
 class CaloriesController < ApplicationController
   before_action :user_signed_in?
-  before_action :correct_user,   only: :destroy
+  before_action :correct_user,   except: [ :index, :new ]
   def index
     @calories = current_user.calories.page(params[:page]).per(30)
   end

@@ -1,0 +1,18 @@
+<% provide(:title, "Tracking progress") %>
+
+<!-- <div id="myfirstchart" style="height: 250px;"></div> -->
+
+<h1>Track my progress</h1>
+
+<div class="row">
+  <div class="col-md-6 col-md-offset-3">
+    <%= form_for(:track_reset, url: track_resets_path) do |f| %>
+      <%= f.label :email %>
+      <%= f.email_field :email, class: 'form-control' %>
+
+      <%= f.submit "Submit", class: "btn btn-primary" %>
+    <% end %>
+  </div>
+</div>
+
+<%= content_tag :div, "", id: "calories_chart", data: {calories: calories_chart_data} %>

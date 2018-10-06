@@ -27,8 +27,8 @@ gem 'devise'
 gem 'jquery-rails', '~> 4.3.1'
 gem 'kaminari'
 
-gem 'morrisjs-rails'
-gem 'raphael-rails'
+#gem 'morrisjs-rails'
+#gem 'raphael-rails'
 
 # Use ActiveStorage variant
 # gem 'mini_magick', '~> 4.8'
