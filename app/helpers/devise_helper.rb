@@ -9,7 +9,7 @@ module DeviseHelper
 
     html = <<-HTML
     <div class="columns">
-      <div class="column is-one-quarter">
+      <div class="column is-three-fifths">
         <div  id="error_explanation" class="notification is-danger">
             <button class="delete" aria-label="delete"></button>
             <ul>#{messages}</ul>
