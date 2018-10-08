@@ -18,16 +18,12 @@
 //= require morris
 //= require_tree .
 
-document.addEventListener("turbolinks:load", function() {
-  my_func();
-})
-
 $(document).on('click', '.notification > button.delete', function() {
     $(this).parent().addClass('is-hidden');
     return false;
 });
 
-document.addEventListener('DOMContentLoaded', () => {
+document.addEventListener("turbolinks:load", () => {
 
   // Get all "navbar-burger" elements
   const $navbarBurgers = Array.prototype.slice.call(document.querySelectorAll('.navbar-burger'), 0);
