@@ -15,7 +15,6 @@ class Calorie < ApplicationRecord
 
   def self.number_grouped_by_day(start)
     calories = where(date: start.beginning_of_day..Time.zone.now)
-    #calories = calories.select("date(calories.date) as cal_date, sum(calories.number) as total_calories").group("cal_date")
     calories = calories.all.except(:order).select("date(calories.date) as cal_date, sum(calories.number) as total_calories").group("cal_date")
     calories.group_by { |o| o.cal_date.to_date }
   end

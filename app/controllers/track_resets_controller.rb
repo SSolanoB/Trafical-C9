@@ -1,6 +1,6 @@
 class TrackResetsController < ApplicationController
 
-  before_action :user_signed_in?, only: [ :create ]
+  before_action :user_signed_in?, only: [ :create, :update_goal ]
   def create
     @user = current_user
     if @user
@@ -14,6 +14,17 @@ class TrackResetsController < ApplicationController
     else
       flash.now[:danger] = "Email address not valid"
       render 'new'
+    end
+  end
+
+  def update_goal
+    @user = current_user
+    if @user.update_attributes(goal: params[:goal_track_reset][:number])
+      flash[:success] = "Goal updated correctly!"
+      redirect_to track_path
+    else
+      flash[:danger] = "Number is not valid, try again"
+      redirect_to track_path
     end
   end
 

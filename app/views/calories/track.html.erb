@@ -3,23 +3,87 @@
 <section class="hero">
   <div class="hero-body">
     <div class="container">
-      <h1 class="title">
-        Track my progress
-      </h1>
+      
       <div class="columns">
-        <div class="column is-four-fifths">
+        <div class="column is-three-quarters">
+          <h1 class="title">
+            Track my progress
+          </h1>
           <%= content_tag :div, "", id: "calories_chart", data: {calories: calories_chart_data} %>
-          <div class="column is-two-fifths">
-            <%= form_for(:track_reset, url: track_resets_path) do |f| %>
+        </div>
+        <div class="column is-one-quarter">
+          <h1 class="title">
+            My goal
+          </h1>
+          <div class="field is-horizontal">
+            <div class="field-label is-normal">
+              <label class="label">Actual</label>
+            </div>
+            <div class="field-body">
               <div class="field">
-                <%= f.label :email, 'Share your progress', class: 'label' %>
                 <div class="control">
-                  <%= f.email_field :email, class: 'input', placeholder: 'Add a valid email' %>
+                  <div class="notification is-rounded is-<%= message_type = ('danger' if calories_chart_data.last[:burned_number] - calories_chart_data.last[:gained_number] < 0) || 'success' %>" >
+                    <%= calories_chart_data.last[:burned_number] - calories_chart_data.last[:gained_number] %>
+                  </div>
                 </div>
               </div>
-              <%= f.submit "Submit", class: "button is-link" %>
-            <% end %>
+            </div>
           </div>
+          <div class="field is-horizontal">
+            <div class="field-label is-normal">
+              <label class="label">Goal</label>
+            </div>
+            <div class="field-body">
+              <div class="field">
+                <div class="control">
+                  <div class="notification is-rounded" type="text" placeholder="0">
+                    <%= current_user.goal %>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="field is-horizontal">
+            <div class="field-body">
+              <div class="field">
+                <div class="control">
+                  <div class="notification is-rounded is-<%= message_type = ('danger' if current_user.goal - (calories_chart_data.last[:burned_number] - calories_chart_data.last[:gained_number]) < 0) || ('warning' if current_user.goal - (calories_chart_data.last[:burned_number] - calories_chart_data.last[:gained_number]) > 0) || 'success' %>">
+                    <% if current_user.goal - (calories_chart_data.last[:burned_number] - calories_chart_data.last[:gained_number]) < 0 %>
+                      <%= "You have burned more calories than expected, please gain #{number_with_precision((current_user.goal - (calories_chart_data.last[:burned_number] - calories_chart_data.last[:gained_number])).abs, precision: 2)} calories." %>
+                    <% elsif current_user.goal - (calories_chart_data.last[:burned_number] - calories_chart_data.last[:gained_number]) > 0 %>
+                      <%= "C'mon mate, you can burne #{number_with_precision((current_user.goal - (calories_chart_data.last[:burned_number] - calories_chart_data.last[:gained_number])).abs, precision: 2)} more calories!" %>
+                    <% else %>
+                      <%= "Unitl now, you have achieved your daily goal, keep doing it." %>
+                    <% end %>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="columns">
+        <div class="column is-one-quarter">
+          <%= form_for(:track_reset, url: track_resets_path) do |f| %>
+            <div class="field">
+              <%= f.label :email, 'Share your progress', class: 'label' %>
+              <div class="control">
+                <%= f.email_field :email, type: 'email', class: 'input', placeholder: 'Add a valid email', required: true %>
+              </div>
+            </div>
+            <%= f.submit "Submit", class: "button is-link" %>
+          <% end %>
+        </div>
+        <div class="column is-one-fifth">
+          <%= form_for(:goal_track_reset, url: goal_path) do |f| %>
+            <div class="field">
+              <%= f.label :goal, 'Update your daily goal', class: 'label' %>
+              <div class="control">
+                <%= f.number_field :number, class: 'input', step: 0.01, placeholder: 'Goal of the day', required: true %>
+              </div>
+            </div>
+            <%= f.submit "Update", class: "button is-warning" %>
+          <% end %>
         </div>
       </div>
     </div>
