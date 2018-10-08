@@ -26,4 +26,14 @@
   </div>
 </section>
 
+<script type="javascript">
+    Morris.Line({
+    element: 'calories_chart',
+    data: $('#calories_chart').data('calories'),
+    xkey: 'date',
+    ykeys: ['gained_number', 'burned_number'],
+    labels: ['Gained calories', 'Burned calories'],
+    hideHover: 'auto'
+  });
+</script>
 
