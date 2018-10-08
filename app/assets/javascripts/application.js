@@ -23,7 +23,7 @@ $(document).on('click', '.notification > button.delete', function() {
     return false;
 });
 
-$(document).on('click', '.nav-brand > button.navbar-burger'function() {
+$(document).on('click', '.nav-brand > button.navbar-burger', function() {
     $(".navbar-burger").toggleClass("is-active");
     $(".navbar-menu").toggleClass("is-active");
 });
